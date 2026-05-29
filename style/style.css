@@ -256,6 +256,5 @@ footer a:hover { color: var(--accent); }
    margin: 0.5rem; /* espace entre les stickers */
   }
   .center {
-    margin: auto;
-    padding: auto;
+    text-align: center;
   }
