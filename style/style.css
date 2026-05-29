@@ -232,3 +232,12 @@ footer a:hover { color: var(--accent); }
   from { opacity: 0; transform: translateY(28px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
+
+ .boxtitre{
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: 50%;
+
+
+}
