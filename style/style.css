@@ -1,0 +1,233 @@
+/* ─── Imports polices fête ───────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@300;400;600;700&display=swap');
+
+/* ─── Palette anniversaire ───────────────────────────── */
+:root {
+  --bg:        #fff5f9;
+  --surface:   #ffffff;
+  --border:    #fad4e4;
+  --accent:    #ff4d8d;
+  --accent-2:  #ffb347;
+  --accent-3:  #a78bfa;
+  --text:      #2d1a26;
+  --muted:     #b07090;
+
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'Nunito', sans-serif;
+
+  --radius: 20px;
+  --gap: 1.75rem;
+}
+
+/* ─── Body & fond festif ─────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+/* Confettis en fond via SVG inline */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255,77,141,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(167,139,250,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,179,71,0.05) 0%, transparent 60%);
+}
+
+/* Supprime le grain sombre */
+body::before { opacity: 0; }
+
+/* ─── Ballons flottants (pseudo-éléments décoratifs) ─── */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%       { transform: translateY(-18px) rotate(3deg); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0) rotate(4deg); }
+  50%       { transform: translateY(-22px) rotate(-4deg); }
+}
+
+.hero::after,
+.hero::before {
+  content: '🎈';
+  position: absolute;
+  font-size: 3.5rem;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.7;
+}
+.hero::before {
+  top: 1.5rem; right: 8%;
+  animation: float 5s ease-in-out infinite;
+}
+.hero::after {
+  top: 3rem; right: 14%;
+  font-size: 2.5rem;
+  animation: float2 6.5s ease-in-out infinite 1s;
+}
+
+/* ─── Header ─────────────────────────────────────────── */
+header {
+  background: rgba(255,245,249,0.88);
+  border-bottom: 2px dashed var(--border);
+  backdrop-filter: blur(12px);
+}
+
+.logo { color: var(--text); }
+.logo span { color: var(--accent); }
+
+nav a { color: var(--muted); }
+nav a:hover { color: var(--text); background: #fde8f0; }
+nav a.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ─── Hero tag ───────────────────────────────────────── */
+.hero-tag {
+  color: var(--accent);
+  background: rgba(255,77,141,0.08);
+  border-color: rgba(255,77,141,0.25);
+}
+.hero-tag::before { background: var(--accent); }
+
+/* ─── Titres ─────────────────────────────────────────── */
+h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 55%, var(--accent-3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 em {
+  font-style: normal;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+/* ─── Boutons ────────────────────────────────────────── */
+.btn {
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #ff8ab4);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(255,77,141,0.3);
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 30px rgba(255,77,141,0.5) !important;
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--accent);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+  background: rgba(255,77,141,0.06);
+}
+
+/* ─── Cartes ─────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 16px rgba(255,77,141,0.05);
+  transition: transform 0.25s cubic-bezier(.34,1.56,.64,1), box-shadow 0.25s;
+}
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-6px) rotate(0.5deg);
+  box-shadow: 0 16px 40px rgba(255,77,141,0.15);
+}
+
+.card-icon {
+  background: linear-gradient(135deg, rgba(255,77,141,0.1), rgba(167,139,250,0.1));
+  border: 1px solid rgba(255,77,141,0.2);
+  border-radius: 14px;
+  font-size: 1.4rem;
+}
+
+.card h3 { font-family: var(--font-display); font-style: italic; }
+.card p   { color: var(--muted); }
+
+/* ─── Séparateur festif ──────────────────────────────── */
+hr {
+  border: none;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent)   0px,   var(--accent)   8px,
+    var(--accent-2) 8px,   var(--accent-2) 16px,
+    var(--accent-3) 16px,  var(--accent-3) 24px,
+    transparent     24px,  transparent     32px
+  );
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+/* ─── Section labels ─────────────────────────────────── */
+.section-label {
+  color: var(--accent);
+  letter-spacing: 0.12em;
+}
+
+/* ─── Footer ─────────────────────────────────────────── */
+footer {
+  border-top: 2px dashed var(--border);
+  background: #fff;
+}
+footer p   { color: var(--muted); }
+footer a   { color: var(--muted); }
+footer a:hover { color: var(--accent); }
+
+/* ─── Sparkles animés (déco pure CSS) ───────────────── */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50%       { opacity: 1; transform: scale(1.1) rotate(180deg); }
+}
+
+.hero .container {
+  position: relative;
+}
+.hero .container::before,
+.hero .container::after {
+  content: '✦';
+  position: absolute;
+  font-size: 1.2rem;
+  color: var(--accent-2);
+  animation: sparkle 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+.hero .container::before {
+  top: -1rem; right: 30%;
+  animation-delay: 0s;
+}
+.hero .container::after {
+  bottom: 1rem; right: 22%;
+  font-size: 0.9rem;
+  color: var(--accent-3);
+  animation-delay: 1.4s;
+}
+
+/* ─── Animation d'entrée overrides ──────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
