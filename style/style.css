@@ -55,7 +55,7 @@ body::before { opacity: 0; }
 
 .hero::after,
 .hero::before {
-  content: '🎉​';
+  content: '​🗣️​';
   position: absolute;
   font-size: 3.5rem;
   pointer-events: none;
