@@ -255,3 +255,7 @@ footer a:hover { color: var(--accent); }
    width: 50px;   /* change cette valeur selon ta taille voulue */
    margin: 0.5rem; /* espace entre les stickers */
   }
+  .center {
+    margin: auto;
+    padding: auto;
+  }
