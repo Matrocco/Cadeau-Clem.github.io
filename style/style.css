@@ -257,6 +257,3 @@ footer a:hover { color: var(--accent); }
   .center {
     text-align: center;
   }
-  * {
-  outline: 1px solid red;
-}
