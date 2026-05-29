@@ -241,3 +241,11 @@ footer a:hover { color: var(--accent); }
 
 
 }
+.sticker {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;     /* ou right, top... où tu veux */
+  width: 80px;
+  z-index: 999;   /* passe par-dessus tout */
+  pointer-events: none; /* le sticker ne bloque pas les clics */
+}
