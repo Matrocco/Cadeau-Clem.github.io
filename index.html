@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Projet</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Variables ─────────────────────────────────────────── */
+    :root {
+      --bg:        #0c0c0f;
+      --surface:   #15151a;
+      --border:    #2a2a35;
+      --accent:    #e8ff47;
+      --accent-2:  #ff5c5c;
+      --text:      #f0ede8;
+      --muted:     #7a7a8c;
+
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      --radius:   12px;
+      --gap:      2rem;
+      --max-w:    1200px;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-weight: 300;
+      line-height: 1.65;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Utilitaires ───────────────────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* ─── Grain overlay ─────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── Header ────────────────────────────────────────────── */
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 0;
+      position: sticky;
+      top: 0;
+      background: rgba(12,12,15,0.85);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 0.25rem; align-items: center; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 400;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      transition: color 0.2s, background 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--surface); }
+    nav a.active { color: var(--bg); background: var(--accent); font-weight: 500; }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    .hero {
+      padding: 6rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(232,255,71,0.08);
+      border: 1px solid rgba(232,255,71,0.2);
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+    .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+      max-width: 14ch;
+      margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: normal; color: var(--accent); }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 50ch;
+      margin-bottom: 2.5rem;
+    }
+    .btn-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--accent); color: var(--bg); }
+    .btn-primary:hover { box-shadow: 0 0 24px rgba(232,255,71,0.35); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--muted); background: var(--surface); }
+
+    /* ─── Grid de cartes ────────────────────────────────────── */
+    section { padding: 4rem 0; }
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--gap);
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(232,255,71,0.1);
+      border: 1px solid rgba(232,255,71,0.15);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.25rem;
+    }
+    .card h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .card p { color: var(--muted); font-size: 0.875rem; }
+
+    /* ─── Séparateur ────────────────────────────────────────── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    footer {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    footer p { color: var(--muted); font-size: 0.8rem; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ─── Animations d'entrée ───────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero > .container > * {
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero > .container > *:nth-child(1) { animation-delay: 0.05s; }
+    .hero > .container > *:nth-child(2) { animation-delay: 0.15s; }
+    .hero > .container > *:nth-child(3) { animation-delay: 0.25s; }
+    .hero > .container > *:nth-child(4) { animation-delay: 0.35s; }
+
+    /* ─── Responsive ────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav a { padding: 0.4rem 0.65rem; }
+      .hero { padding: 4rem 0 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────── -->
+  <header>
+    <div class="container">
+      <a href="#" class="logo">Mon<span>Projet</span></a>
+      <nav>
+        <a href="#" class="active">Accueil</a>
+        <a href="#fonctionnalites">Fonctionnalités</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── HERO ───────────────────────────────────────── -->
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-tag">Démarrage rapide</div>
+        <h1>Base solide pour <em>construire</em></h1>
+        <p>Un point de départ propre, structuré et prêt à l'emploi. Modifiez, étendez, et adaptez à votre projet.</p>
+        <div class="btn-group">
+          <a href="#fonctionnalites" class="btn btn-primary">Commencer →</a>
+          <a href="#contact" class="btn btn-ghost">En savoir plus</a>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── SECTION CARTES ───────────────────────────── -->
+    <section id="fonctionnalites">
+      <div class="container">
+        <p class="section-label">Fonctionnalités</p>
+        <h2>Ce que vous avez déjà</h2>
+        <div class="grid">
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Structure HTML5</h3>
+            <p>Balisage sémantique propre avec header, main, footer et sections bien organisées.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>Variables CSS</h3>
+            <p>Thème centralisé via custom properties. Changez une couleur, tout se met à jour.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">📐</div>
+            <h3>Layout Responsive</h3>
+            <p>Grid CSS flexible et typographie fluide avec <code>clamp()</code> pour tous les écrans.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">✨</div>
+            <h3>Animations CSS</h3>
+            <p>Entrées animées légères et micro-interactions au survol sans dépendance externe.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🔤</div>
+            <h3>Typographie soignée</h3>
+            <p>Paire de polices Google Fonts harmonieuse entre affichage et corps de texte.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">🧩</div>
+            <h3>Composants prêts</h3>
+            <p>Boutons, cartes, navigation et footer — les blocs essentiels déjà en place.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- ── SECTION CONTACT ──────────────────────────── -->
+    <section id="contact">
+      <div class="container">
+        <p class="section-label">Contact</p>
+        <h2>Une question ?</h2>
+        <p style="color: var(--muted); max-width: 48ch; margin-bottom: 1.5rem;">
+          Remplacez cette section par un formulaire, un CTA, ou tout ce dont vous avez besoin.
+        </p>
+        <a href="mailto:hello@exemple.fr" class="btn btn-primary">Nous contacter</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── FOOTER ─────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <p>© 2026 <a href="#">MonProjet</a>. Tous droits réservés.</p>
+      <p><a href="#">Mentions légales</a> · <a href="#">Confidentialité</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
