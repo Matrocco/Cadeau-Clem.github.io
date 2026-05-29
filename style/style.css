@@ -234,10 +234,10 @@ footer a:hover { color: var(--accent); }
 }
 
  .boxtitre{
-  width: 20%;
+  width: fit-content;
+  max-width: 90%;
   border: 15px solid #ff8ab4;
-  padding: auto;
-  margin: auto;
+  margin: 0 auto;
 
 
 }
