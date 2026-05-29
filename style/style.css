@@ -246,8 +246,8 @@ footer a:hover { color: var(--accent); }
   width: 50px;
   z-index: 999;   /* passe par-dessus tout */
   pointer-events: none; /* le sticker ne bloque pas les clics */
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   transform: translateX(-50%);
 }
 
