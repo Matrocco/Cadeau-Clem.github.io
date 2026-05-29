@@ -249,3 +249,8 @@ footer a:hover { color: var(--accent); }
   z-index: 999;   /* passe par-dessus tout */
   pointer-events: none; /* le sticker ne bloque pas les clics */
 }
+
+.stickers {
+   width: 80px;   /* change cette valeur selon ta taille voulue */
+   margin: 0.5rem; /* espace entre les stickers */
+  }
