@@ -245,7 +245,7 @@ footer a:hover { color: var(--accent); }
   position: fixed;
   bottom: 2rem;
   left: 2rem;     /* ou right, top... où tu veux */
-  width: 90%;
+  width: 50px;
   z-index: 999;   /* passe par-dessus tout */
   pointer-events: none; /* le sticker ne bloque pas les clics */
   top: 2rem;
@@ -254,6 +254,6 @@ footer a:hover { color: var(--accent); }
 }
 
 .stickers {
-   width: 80px;   /* change cette valeur selon ta taille voulue */
+   width: 50px;   /* change cette valeur selon ta taille voulue */
    margin: 0.5rem; /* espace entre les stickers */
   }
