@@ -234,7 +234,7 @@ footer a:hover { color: var(--accent); }
 }
 
  .boxtitre{
-  width: 300px;
+  width: 100%;
   border: 15px solid green;
   padding: 50px;
   margin: 10%;
